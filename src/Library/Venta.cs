@@ -9,9 +9,9 @@ public class Venta
 
     public Venta(double unPrecio, string unMotivo, DateTime? unaFecha = null)
     {
-        Precio = unPrecio;
-        Fecha = unaFecha ?? DateTime.Now;
-        Motivo = unMotivo;
+        this.Precio = unPrecio;
+        this.Fecha = unaFecha ?? DateTime.Now;
+        this.Motivo = unMotivo;
     }
 
     /// <summary>

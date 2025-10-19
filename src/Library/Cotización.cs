@@ -1,6 +1,6 @@
 namespace Library;
 
-public class Cotización
+public class Cotizacion
 {
     public string Motivo { get; set; }
     public double Precio { get; set; }
