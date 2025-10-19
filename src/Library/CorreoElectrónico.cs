@@ -29,8 +29,8 @@ public class CorreoElectronico: Interaccion
         Console.WriteLine($"Usuario: {Usuario.Nombre} {Usuario.Apellido}");
         Console.WriteLine($"Cliente: {Cliente.Nombre} {Cliente.Apellido}");
         Console.WriteLine($"Fecha: {Fecha:dd/MM/yyyy HH:mm}");
-        Console.WriteLine($"Emisor: {NumeroEmisor}");
-        Console.WriteLine($"Receptor: {NumeroReceptor}");
+        Console.WriteLine($"Emisor: {DireccionEmisor}");
+        Console.WriteLine($"Receptor: {DireccionReceptor}");
         Console.WriteLine($"Contenido del correo: {Contenido}");
         Console.WriteLine($"Respondido: {(Respondido ? "Sí" : "No")}"); // operador ternario para reducir tamaño de código
         Console.WriteLine($"Nota: {(string.IsNullOrEmpty(Nota) ? "sin nota": Nota)}");

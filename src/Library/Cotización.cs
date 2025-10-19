@@ -6,7 +6,7 @@ public class Cotizacion
     public double Precio { get; set; }
     public DateTime Fecha { get; set; }
 
-    public Cotización(string unMotivo, double unPrecio, DateTime? unaFecha=null)
+    public Cotizacion(string unMotivo, double unPrecio, DateTime? unaFecha=null)
     {
         Motivo = unMotivo;
         Precio = unPrecio;
@@ -15,9 +15,9 @@ public class Cotizacion
 
     public void MostrarCotización()
     {
-        Console.WriteLine($"Motivo: {Motivo}\n" +
-                          $"Precio ofrecido: {Precio}\n" +
-                          $"Fecha de cotización: {Fecha:dd/MM/yyyy HH:mm}");
+        Console.WriteLine($"Motivo: {Motivo}");
+        Console.WriteLine($"Precio ofrecido: {Precio}"); 
+        Console.WriteLine($"Fecha de cotización: {Fecha:dd/MM/yyyy HH:mm}"); 
     }
 
 
