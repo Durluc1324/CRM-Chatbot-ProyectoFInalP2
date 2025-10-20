@@ -6,7 +6,7 @@ public class Usuario
     public string Apellido { get; set; }
     public string Telefono { get; set; }
     public string Correo { get; set; }
-    public List<Cliente> ListaDeClientes;
+    public List<Cliente> ListaDeClientes { get; set; }
 
     public Usuario(string unNombre, string unApellido, string unTelefono, string unCorreo)
     {
