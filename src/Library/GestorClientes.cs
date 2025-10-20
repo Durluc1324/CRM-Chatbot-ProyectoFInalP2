@@ -72,29 +72,7 @@ public class GestorClientes
     {
 
     }
-
-    public static Cliente BuscarCliente(string criterio, Usuario usuario)
-    {
-        // Verificación básica
-        if (usuario == null || usuario.ListaDeClientes == null)
-        {
-            Console.WriteLine("Error: el usuario o su lista de clientes es nula.");
-            return null;
-        }
-        foreach (Cliente cliente in usuario.ListaDeClientes)
-        {
-            if (cliente.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase) ||
-                cliente.Apellido.Contains(criterio, StringComparison.OrdinalIgnoreCase) ||
-                cliente.Telefono.Contains(criterio, StringComparison.OrdinalIgnoreCase) ||
-                cliente.Correo.Contains(criterio, StringComparison.OrdinalIgnoreCase))
-            {
-                return cliente;
-            }
-        }
-
-        Console.WriteLine("No hay cliente que contenga el valor dado.");
-        return null;
-    }
+    
 
     public static List<Venta> ObtenerVentasPorPeriodo(DateTime inicio, DateTime fin)
     {
