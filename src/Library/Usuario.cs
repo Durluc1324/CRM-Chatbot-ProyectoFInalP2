@@ -16,5 +16,21 @@ public class Usuario
         Correo = unCorreo;
         ListaDeClientes = new List<Cliente>();
     }
-    
+    public virtual void MostrarPanelUsuario()
+    {
+        Console.WriteLine("──────────────");
+        Console.WriteLine($"USUARIO");
+        Console.WriteLine("──────────────");
+        Console.WriteLine($"Nombre completo: {Nombre} {Apellido}");
+        Console.WriteLine($"Correo electrónico: {Correo}");
+        Console.WriteLine($"Teléfono: {Telefono}");
+        Console.WriteLine("Clientes:");
+        foreach (Cliente cliente in ListaDeClientes)
+        {
+            Console.WriteLine($"{cliente.Nombre} {cliente.Apellido}");
+            
+            
+        }
+        
+    }
 }

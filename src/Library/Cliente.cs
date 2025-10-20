@@ -29,4 +29,18 @@ public class Cliente
         Etiquetas = new List<string>();
 
     }
+
+    public void AñadirVenta(Venta venta)
+    {
+        ListaDeVentas.Add(venta);
+        Console.WriteLine($"Se añadió una nueva venta al cliente {Nombre} {Apellido}.");
+
+    }
+
+    public void AñadirCotizacion(Cotizacion cotizacion)
+    {
+        ListaDeCotizaciones.Add(cotizacion);
+        Console.WriteLine($"Se añadió una nueva cotización al cliente {Nombre} {Apellido}.");
+
+    }
 }

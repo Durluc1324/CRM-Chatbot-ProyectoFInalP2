@@ -1,6 +1,6 @@
 namespace Library;
 
-public class GestorUsuarios
+public static class GestorUsuarios
 {
-    
+    private static List<Usuario> _usuarios = new List<Usuario>();
 }

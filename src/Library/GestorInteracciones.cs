@@ -2,6 +2,55 @@ namespace Library;
 
 public static class GestorInteracciones
 {
+    public static void AgregarInteraccion(Cliente unCliente, Interaccion unaInteraccion)
+    {
+        unCliente.ListaDeInteracciones.Add(unaInteraccion);
+    }
+
+    public static void EliminarInteraccion(Cliente unCliente, Interaccion unaInteraccion)
+    {
+        if (unCliente.ListaDeInteracciones.Contains(unaInteraccion))
+        {
+            unCliente.ListaDeInteracciones.Remove(unaInteraccion);
+
+        }
+        else
+        {
+            Console.WriteLine("El cliente no tiene el cliente dado.");
+        }
+    }
+    public static void AgregarNota(Interaccion interaccion, string nota)
+    {
+        if (string.IsNullOrWhiteSpace(nota))
+        {
+            Console.WriteLine("No se puede agregar una nota vacía.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(interaccion.Nota))
+        {
+            interaccion.Nota = nota;
+            Console.WriteLine("Nota agregada correctamente.");
+        }
+        else
+        {
+            Console.WriteLine($"La interacción ya tiene una nota: \"{interaccion.Nota}\"");
+            Console.Write("¿Desea reemplazarla con la nueva nota? (s/n): ");
+            string respuesta = Console.ReadLine();
+
+            if (respuesta?.ToLower() == "s")
+            {
+                interaccion.Nota = nota;
+                Console.WriteLine("La nota fue reemplazada correctamente.");
+            }
+            else
+            {
+                Console.WriteLine("La nota anterior se mantuvo sin cambios.");
+            }
+        }
+    }
+
+
     public static void MostrarInteracciones(Cliente cliente, string? tipo = null, DateTime? fecha = null)
     {
         // Se crea una lista temporal para almacenar las interacciones filtradas
