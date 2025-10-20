@@ -5,9 +5,20 @@ namespace Library;
 public static class GestorClientes
 {
     public static void CrearCliente(string unNombre, string unApellido, string unTelefono, string unCorreo,
-        DateTime unaFecha,
-        Usuario usuario)
+        DateTime unaFecha, Usuario usuario)
     {
+        if (usuario == null)
+        {
+            Console.WriteLine("El usuario no puede ser nulo.");
+            return;
+        }
+
+        if (usuario.Suspendido)
+        {
+            Console.WriteLine($"El usuario {usuario.Nombre} {usuario.Apellido} está suspendido y no puede crear clientes.");
+            return;
+        }
+
         if (usuario.ListaDeClientes.Any(c => c.Correo == unCorreo))
         {
             Console.WriteLine("Ya existe un cliente con ese correo.");
@@ -18,18 +29,27 @@ public static class GestorClientes
             Console.WriteLine("Ya existe un cliente con ese teléfono.");
             return;
         }
-        else
-        {
-            Cliente cliente = new Cliente(unNombre, unApellido, unTelefono, unCorreo, unaFecha, usuario);
-            usuario.ListaDeClientes.Add(cliente);
-        }
 
+        Cliente cliente = new Cliente(unNombre, unApellido, unTelefono, unCorreo, unaFecha, usuario);
+        usuario.ListaDeClientes.Add(cliente);
+        Console.WriteLine($"Cliente {cliente.Nombre} {cliente.Apellido} creado correctamente.");
     }
-
     public static void ModificarCliente(Cliente cliente, string? unNombre = null,
         string? unApellido = null, string? unTelefono = null,
         string? unCorreo = null, DateTime? unaFecha = null)
     {
+        if (cliente == null)
+        {
+            Console.WriteLine("El cliente no puede ser nulo.");
+            return;
+        }
+
+        if (cliente.AsignadoA != null && cliente.AsignadoA.Suspendido)
+        {
+            Console.WriteLine($"El usuario {cliente.AsignadoA.Nombre} {cliente.AsignadoA.Apellido} está suspendido y no puede modificar clientes.");
+            return;
+        }
+        
         if (unNombre != null)
             cliente.Nombre = unNombre;
 
@@ -90,6 +110,12 @@ public static class GestorClientes
 
     public static void AñadirVenta(Venta unaVenta, Cliente unCliente, Usuario usuario)
         {
+            if (usuario.Suspendido)
+            {
+                Console.WriteLine($"El usuario {usuario.Nombre} {usuario.Apellido} está suspendido y no puede añadir ventas.");
+                return;
+            }
+            
             if (usuario.ListaDeClientes.Contains(unCliente))
             {
                 unCliente.AñadirVenta(unaVenta);
@@ -102,6 +128,11 @@ public static class GestorClientes
 
     public static void AñadirCotizacion(Cotizacion unaCotizacion, Cliente unCliente, Usuario usuario)
         {
+            if (usuario.Suspendido)
+            {
+                Console.WriteLine($"El usuario {usuario.Nombre} {usuario.Apellido} está suspendido y no puede añadir cotizaciones.");
+                return;
+            }
             if (usuario.ListaDeClientes.Contains(unCliente))
             {
                 unCliente.AñadirCotizacion(unaCotizacion);
@@ -147,18 +178,37 @@ public static class GestorClientes
         }
 
     public static void AsignarClienteAOtroVendedor(Cliente cliente, Usuario vendedorActual, Usuario vendedorNuevo)
+    {
+        if (vendedorActual == null || vendedorNuevo == null || cliente == null)
         {
-            if (vendedorActual.ListaDeClientes.Contains(cliente))
-            {
-                vendedorActual.ListaDeClientes.Remove(cliente);
-                vendedorNuevo.ListaDeClientes.Add(cliente);
-                Console.WriteLine(
-                    $"El cliente {cliente.Nombre} {cliente.Apellido} fue asignado correctamente a {vendedorNuevo.Nombre} {vendedorNuevo.Apellido}.");
-            }
-            else
-            {
-                Console.WriteLine(
-                    $"El cliente {cliente.Nombre} {cliente.Apellido} no pertenece al vendedor {vendedorActual.Nombre} {vendedorActual.Apellido}.");
-            }
+            Console.WriteLine("Error: vendedor o cliente nulo.");
+            return;
         }
+
+        if (vendedorActual.Suspendido)
+        {
+            Console.WriteLine($"El vendedor actual {vendedorActual.Nombre} está suspendido y no puede reasignar clientes.");
+            return;
+        }
+
+        if (vendedorNuevo.Suspendido)
+        {
+            Console.WriteLine($"El nuevo vendedor {vendedorNuevo.Nombre} está suspendido y no puede recibir clientes.");
+            return;
+        }
+
+        if (vendedorActual.ListaDeClientes.Contains(cliente))
+        {
+            vendedorActual.ListaDeClientes.Remove(cliente);
+            vendedorNuevo.ListaDeClientes.Add(cliente);
+
+            Console.WriteLine(
+                $"El cliente {cliente.Nombre} {cliente.Apellido} fue asignado correctamente a {vendedorNuevo.Nombre} {vendedorNuevo.Apellido}.");
+        }
+        else
+        {
+            Console.WriteLine(
+                $"El cliente {cliente.Nombre} {cliente.Apellido} no pertenece al vendedor {vendedorActual.Nombre} {vendedorActual.Apellido}.");
+        }
+    }
 }

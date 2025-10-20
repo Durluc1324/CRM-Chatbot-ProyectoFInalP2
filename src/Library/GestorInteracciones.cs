@@ -4,23 +4,41 @@ public static class GestorInteracciones
 {
     public static void AgregarInteraccion(Cliente unCliente, Interaccion unaInteraccion)
     {
+        if (!ValidadorUsuarios.UsuarioActivo(unCliente.AsignadoA) || unCliente.AsignadoA.Suspendido)
+        {
+            Console.WriteLine("El usuario asignado está suspendido y no puede agregar interacciones.");
+            return;
+        }
+
         unCliente.ListaDeInteracciones.Add(unaInteraccion);
     }
 
     public static void EliminarInteraccion(Cliente unCliente, Interaccion unaInteraccion)
     {
+        if (unCliente.AsignadoA.Suspendido)
+        {
+            Console.WriteLine("El usuario asignado está suspendido y no puede eliminar interacciones.");
+            return;
+        }
+
         if (unCliente.ListaDeInteracciones.Contains(unaInteraccion))
         {
             unCliente.ListaDeInteracciones.Remove(unaInteraccion);
-
         }
         else
         {
-            Console.WriteLine("El cliente no tiene el cliente dado.");
+            Console.WriteLine("El cliente no tiene la interacción dada.");
         }
     }
+
     public static void AgregarNota(Interaccion interaccion, string nota)
     {
+        if (interaccion.Usuario.Suspendido)
+        {
+            Console.WriteLine("El usuario asignado está suspendido y no puede agregar notas.");
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(nota))
         {
             Console.WriteLine("No se puede agregar una nota vacía.");
@@ -49,6 +67,7 @@ public static class GestorInteracciones
             }
         }
     }
+
 
 
     public static void MostrarInteracciones(Cliente cliente, string? tipo = null, DateTime? fecha = null)
