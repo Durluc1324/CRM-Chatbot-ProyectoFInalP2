@@ -3,6 +3,26 @@ namespace Library;
 public static class GestorUsuarios
 {
     private static List<Usuario> listaUsuarios = new List<Usuario>();
+    private static List<Administrador> listaAdministradores = new List<Administrador>();
+    
+    public static void CrearAdministrador(string nombre, string apellido, string telefono, string correo, string contraseña)
+    {
+            foreach (Administrador administrador in listaAdministradores)
+            {
+                if (administrador.Telefono == telefono || administrador.Correo == correo)
+                {
+                    Console.WriteLine("Ya existe un usuario o administrador con ese teléfono o correo.");
+                    return;
+                }
+            }    
+            
+        Administrador admin = new Administrador(nombre, apellido, telefono, correo, contraseña);
+        listaAdministradores.Add(admin);
+        listaUsuarios.Add(admin); 
+        Console.WriteLine($"Administrador {nombre} {apellido} creado correctamente.");
+    }
+    
+    public static List<Administrador> ObtenerAdministradores() => listaAdministradores;
 
     public static void CrearUsuario(string nombre, string apellido, string telefono, string correo, string contraseña)
     {
@@ -11,6 +31,21 @@ public static class GestorUsuarios
             if (usuario.Telefono == telefono)
             {
                 Console.WriteLine("Ya existe un usuario con ese número de teléfono.");
+                return;
+            }
+
+            if (usuario.Correo == correo)
+            {
+                Console.WriteLine("Ya existe un usuario con ese correo electrónico.");
+                return;
+            }
+        }
+
+        foreach (Usuario usuario in listaAdministradores)
+        {
+            if (usuario.Telefono == telefono)
+            {
+                Console.WriteLine("Ya existe un administrador con ese número de teléfono.");
                 return;
             }
 
