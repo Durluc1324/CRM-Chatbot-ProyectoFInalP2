@@ -125,7 +125,7 @@ public static class GestorClientes
                 Console.WriteLine("El cliente no pertenece al usuario actual.");
             }
         }
-
+    
     public static void AñadirCotizacion(Cotizacion unaCotizacion, Cliente unCliente, Usuario usuario)
         {
             if (usuario.Suspendido)
