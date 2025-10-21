@@ -12,7 +12,7 @@ Durante el desarrollo del diagrama UML tuve varios percances como la pérdida de
 
 Mientras realizaba las clases en el código, tuve que enfrentarme a varios desafíos nuevos como el aprender el uso de los operadores ? en el caso donde en los métodos que modifican las funciones fueran null o vacío. Releer lo que había investigado hace meses atrás me hizo sentir que el esfuerzo que di en ese entonces está dando sus frutos actualmente. También me surgieron varios inconvenientes que me atrasaron, como por ejemplo los usuarios suspendidos, pues tenía que evaluar qué métodos necesitaban ser modificados para que los usuarios suspendidos no hicieran nada, lo que desencadenó en la creación de la clase estátitca ValidadorUsuarios para ello. 
 
-##Cosas que aprendí a parte de la materia en este proyecto
+## Cosas que aprendí a parte de la materia en este proyecto
 
 El uso de los operadores ternarios me resultó bastante curioso y la aplicación del uso de patrón de diseño Fachada me dio bastante curiosidad por saber cómo sería desarrollar la inferfaz entre el usuario y el código más a profundidad para el futuro (en algún momento retomaré la lectura de mi libro de html y css jeje). 
 
