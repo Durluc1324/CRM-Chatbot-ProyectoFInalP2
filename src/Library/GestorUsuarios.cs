@@ -61,7 +61,6 @@ public static class GestorUsuarios
         Console.WriteLine("Usuario creado correctamente.");
     }
 
-    // Modificar los datos de un usuario
     public static void ModificarUsuario(Usuario usuario, string nuevoNombre = null, string nuevoApellido = null, string nuevoTelefono = null, string nuevoCorreo = null)
     {
         if (usuario == null)
@@ -88,7 +87,6 @@ public static class GestorUsuarios
 
         if (!string.IsNullOrEmpty(nuevoTelefono))
         {
-            // Validar que no haya otro usuario con el mismo teléfono
             foreach (Usuario u in listaUsuarios)
             {
                 if (u != usuario && u.Telefono == nuevoTelefono)
@@ -102,7 +100,7 @@ public static class GestorUsuarios
 
         if (!string.IsNullOrEmpty(nuevoCorreo))
         {
-            // Validar que no haya otro usuario con el mismo correo
+            
             foreach (Usuario u in listaUsuarios)
             {
                 if (u != usuario && u.Correo == nuevoCorreo)
@@ -117,7 +115,6 @@ public static class GestorUsuarios
         Console.WriteLine("Usuario modificado correctamente.");
     }
 
-    // Suspender un usuario (por ejemplo, cambiar su estado)
     public static void SuspenderUsuario(Usuario usuario)
     {
         if (usuario == null)
@@ -168,7 +165,6 @@ public static class GestorUsuarios
         }
     }
 
-    // Buscar usuario por criterio (nombre, apellido, teléfono o correo)
     public static Usuario BuscarUsuario(string criterio)
     {
         foreach (Usuario usuario in listaUsuarios)
@@ -176,7 +172,7 @@ public static class GestorUsuarios
             if (usuario.Nombre == criterio || usuario.Apellido == criterio || usuario.Telefono == criterio || usuario.Correo == criterio)
             {
                 Console.WriteLine("Usuario encontrado:");
-                usuario.MostrarPanelUsuario(); // suponiendo que existe este método
+                usuario.MostrarPanelUsuario(); 
                 return usuario;
             }
         }
@@ -185,7 +181,7 @@ public static class GestorUsuarios
         return null;
     }
 
-    // Mostrar todos los usuarios
+    
     public static List<Usuario> ObtenerTodosLosUsuarios()
     {
         foreach (Usuario usuario in listaUsuarios)
@@ -210,7 +206,7 @@ public static class GestorUsuarios
             return;
         }
 
-        // Buscar el vendedor actual
+      
         Usuario vendedorActual = null;
 
         foreach (Usuario u in listaUsuarios)
