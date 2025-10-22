@@ -13,13 +13,7 @@ public class Venta
         this.Fecha = unaFecha ?? DateTime.Now;
         this.Motivo = unMotivo;
     }
-
-    /// <summary>
-    /// Crear las ventas de la siguiente manera:
-    /// Venta v1 = new Venta(500, "Venta de laptop"); // usa fecha actual
-    /// Venta v2 = new Venta(600, "Venta antigua", new DateTime(2025, 6, 4)); // fecha específica
-    /// </summary>
-
+    
     public void MostrarVenta()
     {
         Console.WriteLine($"Producto: {Objeto}\n" +
